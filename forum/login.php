@@ -1,5 +1,10 @@
 <?php 
+	
+	# inizializzo la sessione in caso di login effettivo
+	session_start();
 
+
+	# richiedo modulo database
 	require("database.php");
 
 
@@ -8,36 +13,86 @@
 	$password = $_POST["password"];
 
 
-	/* create a prepared statement */
-	if ($stmt = $mysqli->prepare("SELECT * FROM Utente WHERE username=? AND password=?")) {
+	/* 
+	if ($stmt = $conn->prepare("SELECT * FROM Utente WHERE username=?")) {
 
-	    /* bind parameters for markers */
-	    $stmt->bind_param("ss", $city);
+	    $stmt->bind_param("s", $username);
 
-	    /* execute query */
+	    
 	    $stmt->execute();
 
-	    /* bind result variables */
-	    $stmt->bind_result($district);
 
-	    /* fetch value */
-	    $stmt->fetch();
+	    # ottengo i dati della query
+	    $result = $stmt->get_result();
 
-	    printf("%s is in district %s\n", $city, $district);
+	    
+	    	contiene num_rows, field_count etc
+	    var_dump($result); 
 
-	    /* close statement */
+	    # ottengo il numero delle righe
+	    $row_number = $stmt->num_rows;
+
+	    var_dump($result);
+
+	    # controllo l'andamento della query
+	    if($row_number == 1) {
+	    	echo '<h1> yes </h1>';
+
+	    	# ottengo i dati sottoforma di array associativo
+	    	$user = $result->fetch_assoc();
+
+	    	var_dump($user);
+
+	    } else {
+	    	// redirect errore
+	    	echo '<h1> no </h1>';
+	    }   
+
+	   
 	    $stmt->close();
+	}*/
+
+
+	$stmt = $conn->prepare("SELECT * FROM utente WHERE username = ?");
+	$stmt->bind_param("s", $username);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	if($result->num_rows === 0) exit('No rows');
+	$user = $result->fetch_assoc();
+	
+
+	# controllo della password
+	if (password_verify($password, $user["password"])) {
+
+		# l'utente ha inserito la password corretta
+		$_SESSION["logged"] = true;
+	  $_SESSION["username"] = $user["username"];
+
+	  # redirect all'index
+	  header("Location: index.php");
+
+	} else {
+
+		# l'utente non ha inserito la password corretta
+	  
 	}
+
+	$stmt->close();
+
+
 
 	/*
 	$password = 'LaM1aPassW0rd'; // password valida
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT); // hash memorizzato nel database
-$userPassword = 'LaM1aPassW0rd'; // password inserita dall'utente nel login
-if (password_verify($userPassword, $hashedPassword)) {
-    echo "Accesso effettuato con successo";
-} else {
-    echo "La password inserita non è corretta";
-}
+	$hashedPassword = password_hash($password, PASSWORD_DEFAULT); // hash memorizzato nel database
+	$userPassword = 'LaM1aPassW0rd'; // password inserita dall'utente nel login
+	if (password_verify($userPassword, $hashedPassword)) {
+	    echo "Accesso effettuato con successo";
+	} else {
+	    echo "La password inserita non è corretta";
+	}
 	*/
+
+
+	//https://websitebeaver.com/prepared-statements-in-php-mysqli-to-prevent-sql-injection
 
 ?>

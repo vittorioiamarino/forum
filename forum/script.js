@@ -30,9 +30,7 @@ auth_reg_form.addEventListener("input", function(event) {
 }); */
 
 
-/* form AUTENTICAZIONE procedura */
+/* form AUTENTICAZIONE procedura
 auth_login_form.addEventListener("submit", function(event) {
 	event.preventDefault();
-
-	
-});
+}); */

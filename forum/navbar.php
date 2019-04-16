@@ -31,6 +31,18 @@
 
     </div>
 
+
+    <!-- se l'utente è loggato mostro il suo username nella navbar -->
+    <?php if(isset($_SESSION['logged']) && $_SESSION['logged'] == true && isset($_SESSION["username"])): ?>
+      <div class="uk-navbar-item">
+        <div>
+          <?php echo $_SESSION["username"]; ?>
+        </div>
+      </div>
+    <?php endif; ?>
+    
+
+
   </div>
 </nav>
 
@@ -90,14 +102,14 @@
           <div class="uk-margin">
               <label class="uk-form-label" for="form-stacked-text">Username</label>
               <div class="uk-form-controls">
-                  <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" autocomplete="off">
+                  <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" name="username" autocomplete="off">
               </div>
           </div>
 
           <div class="uk-margin">
               <label class="uk-form-label" for="form-stacked-text">Password</label>
               <div class="uk-form-controls">
-                  <input class="uk-input" id="form-stacked-text" type="password" placeholder="Inserire testo" autocomplete="off">
+                  <input class="uk-input" id="form-stacked-text" type="password" placeholder="Inserire testo" name="password" autocomplete="off">
               </div>
           </div>
 

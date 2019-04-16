@@ -47,7 +47,7 @@
         <ul class="uk-list uk-link-text">
           <li><a href="#">Home</a></li>
           <li><a href="#">Popular</a></li>
-          <li><a href="#">Profile</a></li>
+          <li><a href="profile.php">Profile</a></li>
         </ul>
         </div>
       </div>
