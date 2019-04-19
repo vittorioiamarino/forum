@@ -17,7 +17,9 @@
 	];
 
 	$EVTS = [
-		'rc' => 'registration_completed'
+		'rc' => 'registration_completed',
+		'tc' => 'thread_created',
+		'cp' => 'comment_posted'
 	];
 
 ?>

@@ -8,6 +8,22 @@
 
   <link rel="stylesheet" href="csslib/css/uikit.min.css">
   <script src="csslib/js/uikit.min.js"></script>
+  <script src="csslib/js/uikit-icons.min.js"></script>
+
+  <style type="text/css">
+    .f-circle {
+      width: 40px;
+      height: 40px;
+      background: orange;
+      border-radius: 5px;
+    }
+    .font {
+      font-family: "Gilroy ExtraBold";
+    }
+    .font2 {
+      font-family: "Gilroy";
+    }
+  </style>
 
 </head>
 <body>

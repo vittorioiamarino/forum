@@ -6,6 +6,7 @@
 	$_SESSION["logged"] = false;
 
   unset($_SESSION['username']);
+  unset($_SESSION['id_user']);
   // Delete all session variables
   // session_destroy();
 

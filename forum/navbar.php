@@ -5,18 +5,25 @@
 
 ?>
 
+<div uk-sticky>
 <nav class="uk-navbar-container uk-margin" uk-navbar>
   <div class="uk-navbar-left">
 
-    <a class="uk-navbar-item uk-logo" href="#">
+    <a class="uk-navbar-item uk-logo font" href="#">
       <strong>FORUM</strong>
     </a>
 
     <div class="uk-navbar-item">
-      <form action="javascript:void(0)">
+      <!--<form action="javascript:void(0)">
         <input class="uk-input uk-form-width-large" type="text" placeholder="Search">
+      </form>-->
+      <form class="uk-search uk-search-default">
+        <span uk-search-icon></span>
+        <input class="uk-search-input" type="search" placeholder="Search...">
       </form>
     </div>
+
+    
 
     <div class="uk-navbar-item">
 
@@ -45,21 +52,21 @@
 
   </div>
 </nav>
-
+</div>
 
 
 
 <!-- Modal ask:
      modal per creare un nuovo thread.
      Mostrata solo in presenza di utente autenticato -->
-<div id="modal-ask" uk-modal>
+<!--<div id="modal-ask" uk-modal>
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="uk-modal-header">
             <h2 class="uk-modal-title">Fai una domanda</h2>
         </div>
         
-        <!-- start auth form -->  
+       
         <form class="uk-form-stacked" id="form-auth-ask">
           <div class="uk-margin">
               <label class="uk-form-label" for="form-stacked-text">Titolo della domanda</label>
@@ -75,7 +82,7 @@
               </div>
           </div>
 
-        <!-- end auth form -->
+        
         </form>
 
         <div class="uk-modal-footer uk-text-right">
@@ -83,8 +90,47 @@
             <button class="uk-button uk-button-primary" type="button">CREA THREAD</button>
         </div>
     </div>
-</div>
+</div>-->
+<div id="modal-ask" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Posta una domanda</h2>
+        </div>
+        <div class="uk-modal-body">
 
+        <!-- start auth form -->  
+        <form class="uk-form-stacked" id="form-auth-ask" action="thread.php" method="POST">
+          <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">Titolo</label>
+              <div class="uk-form-controls">
+                  <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" name="title" autocomplete="off">
+              </div>
+          </div>
+
+          <div class="uk-margin">
+              <label class="uk-form-label" for="form-stacked-text">Descrizione (opzionale)</label>
+              <div class="uk-form-controls">
+                  <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" name="description" autocomplete="off">
+              </div>
+          </div>
+
+
+        <!-- end auth form -->
+
+          <div class="uk-margin">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">ANNULLA</button>
+            <button class="uk-button uk-button-primary" type="submit">CREA THREAD</button>
+          </div>
+
+        </form>
+          
+        </div>
+        
+        <!-- bottone footer con float right rimosso -->
+
+    </div>
+</div>
 
 <!-- Modal auth:
      modal per effettuare accesso/login.
