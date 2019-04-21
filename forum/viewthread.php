@@ -22,6 +22,17 @@
 	$stmt->close();
 	$conn->close();
 
+
+	# ottengo il numero di like a questo thread
+	require("database.php");
+	$stmt = $conn->prepare("SELECT COUNT(*) AS n_likes FROM (SELECT * FROM liket WHERE Thread_id = ?) AS num_likes");
+	$stmt->bind_param("i", $thread_id);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$num_likes = $result->fetch_assoc();
+	$number_of_likes = $num_likes["n_likes"];
+
+
 	require("database.php"); // se tolgo questo require muore la connessione e non funzione più nulla
 	#seconda query
 	$stmt = $conn->prepare("SELECT *, P.data as data_post FROM post AS P INNER JOIN thread AS T ON P.Thread_id = T.id INNER JOIN utente AS U ON P.Utente_id = U.id WHERE T.id = $thread_id ORDER BY P.data DESC");
@@ -65,11 +76,15 @@
     </div>
     <div class='uk-card-footer'>
 			
-			<a href="" style="color: orange;" class="uk-icon-button" uk-icon="heart"></a>
+			<a href="index.php" style="color: orange;" id="thread_like_button" class="uk-icon-button" uk-icon="heart"></a>
 			
 			<div class="uk-align-right">	
 				<?php echo count($posts); ?> <span style="color: orange;" uk-icon="comments"></span>
-				&nbsp;&nbsp;10 <span style="color: orange;" uk-icon="heart"></span>
+				&nbsp;&nbsp; 
+				<span id="number_of_likes">
+					<?php echo $number_of_likes; ?>
+				</span>
+				<span style="color: orange;" uk-icon="heart"></span>
     	</div>
     </div>
   </div>

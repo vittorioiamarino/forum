@@ -41,7 +41,7 @@
 
     <!-- se l'utente è loggato mostro il suo username nella navbar -->
     <?php if(isset($_SESSION['logged']) && $_SESSION['logged'] == true && isset($_SESSION["username"])): ?>
-      <div class="uk-navbar-item">
+      <div class="uk-navbar-item font2">
         <div>
           <?php echo $_SESSION["username"]; ?>
         </div>

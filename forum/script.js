@@ -21,6 +21,11 @@ const auth_reg_form = document.getElementById("form-auth-reg");
 const new_thread_form = document.getElementById("form-auth-ask");
 
 
+const like_button = document.getElementById("thread_like_button");
+
+/* spam che mostra il numero di like di un thread.
+	 tengo il riferimento perchè deve essere manipolata dalle richieste AJAX */
+const likes_span = document.getElementById("number_of_likes");
 
 
 /* form REGISTRAZIONE handler per AJAX
@@ -34,6 +39,28 @@ auth_reg_form.addEventListener("input", function(event) {
 auth_login_form.addEventListener("submit", function(event) {
 	event.preventDefault();
 }); */
+
+
+$(document).ready(() => {
+
+	$("#thread_like_button").click(function (event) {
+	  $.ajax({
+	    type: "POST",
+	    url: "like.php",
+	    data: "someData=someThing&someMore=somethingElse"
+	  })
+	  .done((e) => {
+	  	let likes = parseInt(likes_span.textContent);
+	  	likes++;
+	  	likes_span.textContent = likes;
+	  })
+	  .fail(() => console.log("ERRORE"));
+
+  event.preventDefault();
+});
+
+});
+
 
 
 /*
@@ -50,9 +77,4 @@ auth_login_form.addEventListener("submit", function(event) {
 	SU VIEW THREAD: LINKARE PROFILO
 
 	********************************************************************
-	
-	CHIEDERE COME FANNO IL DESIGN
-	CHIEDERE COME SIA POSSIBILE CHE LA GENTE VADA DALLE AZIENDE NEL 2019 PER UN SITO
-	CHIEDERE COSA USANO PER DOMINIO E HOSTING
-	CHIEDERE PROCEDURA STANDARD (PLUGINS ETC) PER LA PRODUZIONE DEI SITI
 */

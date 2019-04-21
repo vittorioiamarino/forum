@@ -128,6 +128,22 @@
               echo "Data pubblicazione: <strong>{$thread['data']}</strong><br/>";
               echo "<hr class='uk-divider-icon'>";*/
 
+              # ottengo il numero di like
+              $stmt = $conn->prepare("SELECT COUNT(*) AS n_likes FROM (SELECT * FROM liket WHERE Thread_id = ?) AS num_likes");
+              $stmt->bind_param("i", $thread['thread_id']);
+              $stmt->execute();
+              $result = $stmt->get_result();
+              $num_likes = $result->fetch_assoc();
+              $number_of_likes = $num_likes["n_likes"];
+
+              # ottengo il numero di commenti
+              $stmt = $conn->prepare("SELECT COUNT(*) AS n_comments FROM (SELECT * FROM post WHERE Thread_id = ?) AS num_comments");
+              $stmt->bind_param("i", $thread['thread_id']);
+              $stmt->execute();
+              $result = $stmt->get_result();
+              $num_comments = $result->fetch_assoc();
+              $number_of_comments = $num_comments["n_comments"];
+
               echo "<div class='uk-card uk-card-default uk-width-2-3@m uk-card-hover'>
                               <div class='uk-card-header'>
                                   <div class='uk-grid-small uk-flex-middle' uk-grid>
@@ -148,8 +164,11 @@
                               <div class='uk-card-footer'>
                                   <a href='viewthread.php?thread_id={$thread['thread_id']}' class='uk-button uk-button-text'>VISUALIZZA THREAD</a>
                                   <div class='uk-align-right'>  
-                                  11 <span style='color: orange;' uk-icon='comments'></span>
-                                 
+                                  &nbsp;&nbsp;<span id='number_of_likes'> $number_of_comments </span>
+                                  <span style='color: orange;' uk-icon='comments'></span>
+                                  &nbsp;&nbsp; 
+                                  <span id='number_of_likes'> $number_of_likes </span>
+                                  <span style='color: orange;' uk-icon='heart'></span>
                                 </div>
                               </div>
                           </div><br/><br/>";
