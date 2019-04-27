@@ -11,6 +11,9 @@
   <script src="csslib/js/uikit-icons.min.js"></script>
 
   <style type="text/css">
+    body {
+      background: #eee;
+    }
     .f-circle {
       width: 40px;
       height: 40px;
@@ -23,18 +26,19 @@
     .font2 {
       font-family: "Gilroy";
     }
+    /*#a { background: #FAFAFA; }*/
   </style>
 
 </head>
 <body>
   
+  <div id="overlay_div"></div>
+
+  <!-- includo componente navbar -->
+  <?php include("navbar.php"); ?>
+
   <!-- start page container -->
   <div class="uk-container">
-
-
-    <!-- includo componente navbar -->
-    <?php include("navbar.php"); ?>
-
 
     <?php
 
@@ -89,13 +93,13 @@
         </ul>
         </div>-->
         <ul class="uk-list uk-list-divider uk-link-text font2">
-          <li><span class="uk-margin-small-right" uk-icon="home"></span><a href="#">Home</a></li>
-          <li><span class="uk-margin-small-right" uk-icon="star"></span><a href="#">Popular</a></li>
+          <li><span class="uk-margin-small-right" uk-icon="home"></span><a href="index.php">Home</a></li>
+          <li><span class="uk-margin-small-right" uk-icon="star"></span><a href="popular.php">Popular</a></li>
           <li><span class="uk-margin-small-right" uk-icon="user"></span><a href="profile.php">Profilo</a></li>
         </ul>
       </div>
 
-      <div class="uk-width-5-6" style="background: #FAFAFA;">
+      <div class="uk-width-5-6" id="a">
         <!--<div class="uk-card uk-card-default uk-card-body">Item</div>-->
 
         <h1 class="uk-heading-divider font" style="color: #707070;">Il mio Feed</h1>

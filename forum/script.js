@@ -43,21 +43,113 @@ auth_login_form.addEventListener("submit", function(event) {
 
 $(document).ready(() => {
 
-	$("#thread_like_button").click(function (event) {
-	  $.ajax({
-	    type: "POST",
-	    url: "like.php",
-	    data: "someData=someThing&someMore=somethingElse"
-	  })
-	  .done((e) => {
-	  	let likes = parseInt(likes_span.textContent);
-	  	likes++;
-	  	likes_span.textContent = likes;
-	  })
-	  .fail(() => console.log("ERRORE"));
+		var click_elem;
 
-  event.preventDefault();
-});
+		$(document).mousedown(function(e) {
+        click_elem = $(e.target);
+    });
+    $(document).mouseup(function(e) {
+        click_elem = null;
+    });
+
+
+
+		$("#thread_like_button").click(function (event) {
+		  $.ajax({
+		    type: "POST",
+		    url: "like.php",
+		    data: "someData=someThing&someMore=somethingElse"
+		  })
+		  .done((e) => {
+		  	let likes = parseInt(likes_span.textContent);
+		  	likes++;
+		  	likes_span.textContent = likes;
+		  })
+		  .fail(() => console.log("ERRORE"));
+
+			 event.preventDefault();
+		});
+
+
+
+		$("#search").keyup(function(){
+			$('#result').html('');
+			var searchField = $('#search').val();
+			var expression = new RegExp(searchField, "i");
+
+
+			if(searchField.length == 0) {
+				//$("#results").hide();
+				$("#results").empty();
+				$("#results").addClass("invisible");
+				$("#results").removeClass("visible");
+				return;
+			} else {
+				$("#results").empty();
+				$.ajax({
+			    type: "POST",
+			    url: "search.php",
+			    data: "data=" + searchField,
+			  })
+			  .done((e) => {
+			  	let results = JSON.parse(e);
+				  if(results.length == 0) {
+				  	$("#results").append("<li class='font' style='font-size: 20px;'>Nessun risultato &nbsp;<span class='uk-margin-small-right' uk-icon='icon: warning;'></span></li>");
+				  }
+				  else {
+				  	for(let result of results) { //viewthread.php?thread_id=
+				  		let url_string = "'viewthread.php?thread_id='"+result.thread_id+"''";
+
+				  		//$("#results").append("<li><a href='viewthread.php?thread_id="+result.thread_id+"' class='font'>"+result.titolo+"</a><br/><span>"+result.username+"</span><span class='span_res'>"+result.thread_data+"</span></li>");
+				  		$("#results").append("<li><a href='viewthread.php?thread_id="+result.thread_id+"' class='font'>"+result.titolo+"</a><br/><span>"+result.username+"</span><span class='span_res'>"+result.thread_data+"</span></li>");
+				  		//$("#results").append("<p><a href='https://www.google.com'>Google</a></p>");
+				  	}
+				  }
+
+			  	$("#results").addClass("visible");
+					$("#results").removeClass("invisible");
+			  	
+			  })
+			  .fail(() => console.log("ERRORE"));
+			 }
+
+		  /*$("#search").blur(function() {
+				$("#results").hide();
+				$("#results").empty();
+				$("#results").addClass("invisible");
+				$("#results").removeClass("visible");
+			});
+
+			$("#search").focus(function() {
+				$("#results").show();
+				//$("#results").addClass("visible");
+				$("#results").removeClass("invisible");
+			});*/
+
+		});
+
+		$("#search").blur(function() {
+			if(click_elem.closest().prevObject[0].nodeName == "A") {
+				return;
+			} else {
+
+			$("#results").addClass("invisible");
+			$("#results").removeClass("visible");
+			$("#overlay_div").removeClass("overlay");
+			$("#results").hide();
+			$("#results").empty();
+			document.getElementById("search").value = '';
+			}
+		});
+		$("#search").focus(function() {
+				$("#results").show();
+				$("#results").addClass("visible");
+				$("#results").removeClass("invisible");
+				$("#overlay_div").addClass("overlay");
+		});
+
+		$("#results").addClass("invisible");
+		$("#results").removeClass("visible");
 
 });
 
@@ -77,4 +169,7 @@ $(document).ready(() => {
 	SU VIEW THREAD: LINKARE PROFILO
 
 	********************************************************************
+
+
+	https://www.webslesson.info/2017/02/live-search-json-data-using-ajax-jquery.html
 */
