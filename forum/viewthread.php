@@ -112,14 +112,23 @@
 					    </div>-->
 
 					    <!-- Form di commento -->
-					    <form method="POST" action="comment.php">
+					    <form method="POST" id="form-comment" action="comment.php">
 					    	<div class="uk-margin">
-				          <textarea class="uk-textarea" rows="2" placeholder="Scrivi qui la tua risposta.." name="answer"></textarea>
+					    		<?php if($_SESSION["logged"] == false): ?>
+				          	<textarea class="uk-textarea" rows="2" placeholder="Devi essere autenticato per partecipare alla discussione" disabled></textarea>
+				          	<div class="uk-text-right uk-margin">
+						        	<button class="uk-button uk-button-default" type="submit" disabled="">INVIA RISPOSTA</button>
+						        </div>
+				          <?php endif; ?>
+				          <?php if($_SESSION["logged"] == true): ?>
+				          	<textarea class="uk-textarea" id="form-comment-answer" rows="2" placeholder="Scrivi qui la tua risposta.." name="answer"></textarea>
+				          	<div class="uk-text-right uk-margin">
+						        	<button class="uk-button uk-button-default" type="submit">INVIA RISPOSTA</button>
+						        </div>
+				          <?php endif; ?>
 				        </div>
 
-				        <div class="uk-text-right">
-				        	<button class="uk-button uk-button-default" type="submit">INVIA RISPOSTA</button>
-				        </div>
+				        
 					    </form>
 	            
 
@@ -183,3 +192,25 @@
 </div>
 
 <?php include("footer.php"); ?>
+
+<script type="text/javascript">
+	const new_comment_form = document.getElementById("form-comment");
+
+	new_comment_form.addEventListener("submit", function(event) {
+			let username = document.getElementById("form-comment-answer");
+
+			if(username.value == '') {
+				console.log("VALIDAZIONE FORM");
+				event.preventDefault();
+			}
+			console.log("a");
+			if(username.value == '') { $("#form-comment-answer").addClass("uk-form-danger"); }
+		});
+		$("#form-comment-answer").focus(function(){ $(this).removeClass("uk-form-danger"); });
+		$("#form-comment-answer").blur(function(){
+			if($(this).val().length == 0)
+				$(this).addClass("uk-form-danger");
+			else
+				$(this).removeClass("uk-form-danger");
+		});
+</script>

@@ -20,6 +20,9 @@ const auth_reg_form = document.getElementById("form-auth-reg");
 /* form CREAZIONE THREAD */
 const new_thread_form = document.getElementById("form-auth-ask");
 
+/* form COMMENTO THREAD */
+const new_comment_form = document.getElementById("form-comment");
+
 
 const like_button = document.getElementById("thread_like_button");
 
@@ -45,12 +48,8 @@ $(document).ready(() => {
 
 		var click_elem;
 
-		$(document).mousedown(function(e) {
-        click_elem = $(e.target);
-    });
-    $(document).mouseup(function(e) {
-        click_elem = null;
-    });
+		$(document).mousedown(function(e) { click_elem = $(e.target); });
+    $(document).mouseup(function(e) { click_elem = null; });
 
 
 
@@ -151,19 +150,129 @@ $(document).ready(() => {
 		$("#results").addClass("invisible");
 		$("#results").removeClass("visible");
 
+
+
+
+		// gestione validazione form AUTENTICAZIONE
+		auth_login_form.addEventListener("submit", function(event) {
+			let username = document.getElementById("form-auth-username");
+			let password = document.getElementById("form-auth-password");
+
+			if(username.value == '' || password.value == '') {
+				console.log("VALIDAZIONE FORM");
+				event.preventDefault();
+			}
+			console.log("a");
+			if(username.value == '') { $("#form-auth-username").addClass("uk-form-danger"); }
+			if(password.value == '') { $("#form-auth-password").addClass("uk-form-danger"); }
+		});
+
+		// gestione validazione form login
+		$("#form-auth-username").focus(function(){ $(this).removeClass("uk-form-danger"); });
+		$("#form-auth-username").blur(function(){
+			if($(this).val().length == 0)
+				$(this).addClass("uk-form-danger");
+			else
+				$(this).removeClass("uk-form-danger");
+		});
+		$("#form-auth-password").focus(function(){ $(this).removeClass("uk-form-danger"); });
+		$("#form-auth-password").blur(function(){
+			if($(this).val().length == 0)
+				$(this).addClass("uk-form-danger");
+			else
+				$(this).removeClass("uk-form-danger");
+		});
+
+
+
+
+		// gestione validazione form REGISTRAZIONE
+		auth_reg_form.addEventListener("submit", function(event) {
+			let username = document.getElementById("form-reg-username");
+			let password = document.getElementById("form-reg-password");
+
+			if(username.value == '' || password.value == '') {
+				console.log("VALIDAZIONE FORM");
+				event.preventDefault();
+			}
+			console.log("a");
+			if(username.value == '') { $("#form-reg-username").addClass("uk-form-danger"); }
+			if(password.value == '') { $("#form-reg-password").addClass("uk-form-danger"); }
+		});
+		$("#form-reg-username").focus(function(){ $(this).removeClass("uk-form-danger"); });
+		$("#form-reg-username").blur(function(){
+			if($(this).val().length == 0)
+				$(this).addClass("uk-form-danger");
+			else
+				$(this).removeClass("uk-form-danger");
+		});
+		$("#form-reg-password").focus(function(){ $(this).removeClass("uk-form-danger"); });
+		$("#form-reg-password").blur(function(){
+			if($(this).val().length == 0)
+				$(this).addClass("uk-form-danger");
+			else
+				$(this).removeClass("uk-form-danger");
+		});
+
+
+
+
+
+		
+		new_thread_form.addEventListener("submit", function(event) {
+			let username = document.getElementById("form-ask-titolo");
+
+			if(username.value == '') {
+				console.log("VALIDAZIONE FORM");
+				event.preventDefault();
+			}
+			console.log("a");
+			if(username.value == '') { $("#form-ask-titolo").addClass("uk-form-danger"); }
+		});
+		$("#form-ask-titolo").focus(function(){ $(this).removeClass("uk-form-danger"); });
+		$("#form-ask-titolo").blur(function(){
+			if($(this).val().length == 0)
+				$(this).addClass("uk-form-danger");
+			else
+				$(this).removeClass("uk-form-danger");
+		});
+
+
+
+
+
+		
+		/*new_comment_form.addEventListener("submit", function(event) {
+			let username = document.getElementById("form-comment-answer");
+
+			if(username.value == '') {
+				console.log("VALIDAZIONE FORM");
+				event.preventDefault();
+			}
+			console.log("a");
+			if(username.value == '') { $("#form-comment-answer").addClass("uk-form-danger"); }
+		});
+		$("#form-comment-answer").focus(function(){ $(this).removeClass("uk-form-danger"); });
+		$("#form-comment-answer").blur(function(){
+			if($(this).val().length == 0)
+				$(this).addClass("uk-form-danger");
+			else
+				$(this).removeClass("uk-form-danger");
+		});*/
+
+
+
+		
+
+
 });
 
 
 
 /*
-	IMPLEMENTARE LIKE SULLA HOME CON AJAX
-	IMPLEMENTARE VISUALIZZAZIONE A PAGINA SEPARATA AL CLICK DELLA DOMANDA
-	IMPLEMENTARE RISPOSTA DOMANDA
-	FARE IL JOIN NELLA QUERY E DIRE MOSTRARE L'AUTORE
+	
 	SULLA HOME, NEI POST: QUANDO CLICCO SULL'AUTORE DEVE PORTARMI AL SUO PROFILO
-	SULLA HOME, NEI POST: METTERE QUANTE RISPOSTE E QUANTI LIKE
-
-	OPZ: AJAX LIKE BUTTON SU HOME>POST
+	VALIDAZIONE FORM
 	SE SONO LOGGATO I MIEI POST DEVONO DIRE 'IO/ME' INVECE DEL MIO USERNAME ESPLICITO
 
 	SU VIEW THREAD: LINKARE PROFILO

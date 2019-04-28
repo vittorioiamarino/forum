@@ -124,38 +124,6 @@
 <!-- Modal ask:
      modal per creare un nuovo thread.
      Mostrata solo in presenza di utente autenticato -->
-<!--<div id="modal-ask" uk-modal>
-    <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="uk-modal-header">
-            <h2 class="uk-modal-title">Fai una domanda</h2>
-        </div>
-        
-       
-        <form class="uk-form-stacked" id="form-auth-ask">
-          <div class="uk-margin">
-              <label class="uk-form-label" for="form-stacked-text">Titolo della domanda</label>
-              <div class="uk-form-controls">
-                  <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" autocomplete="off">
-              </div>
-          </div>
-
-          <div class="uk-margin">
-              <label class="uk-form-label" for="form-stacked-text">Descrizion (opzionale)</label>
-              <div class="uk-form-controls">
-                  <input class="uk-input" id="form-stacked-text" type="password" placeholder="Inserire testo" autocomplete="off">
-              </div>
-          </div>
-
-        
-        </form>
-
-        <div class="uk-modal-footer uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">ANNULLA</button>
-            <button class="uk-button uk-button-primary" type="button">CREA THREAD</button>
-        </div>
-    </div>
-</div>-->
 <div id="modal-ask" uk-modal>
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -169,14 +137,14 @@
           <div class="uk-margin">
               <label class="uk-form-label font2" for="form-stacked-text">Titolo</label>
               <div class="uk-form-controls">
-                  <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" name="title" autocomplete="off">
+                  <input class="uk-input" id="form-ask-titolo" type="text" placeholder="Inserire testo" name="title" autocomplete="off">
               </div>
           </div>
 
           <div class="uk-margin">
               <label class="uk-form-label font2" for="form-stacked-text">Descrizione (opzionale)</label>
               <div class="uk-form-controls">
-                  <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" name="description" autocomplete="off">
+                  <input class="uk-input" id="form-ask-descrizione" type="text" placeholder="Inserire testo" name="description" autocomplete="off">
               </div>
           </div>
 
@@ -184,6 +152,7 @@
         <!-- end auth form -->
 
           <div class="uk-margin">
+            <br>
             <button class="uk-button uk-button-default uk-modal-close" type="button">ANNULLA</button>
             <button class="uk-button uk-button-primary" type="submit">CREA THREAD</button>
           </div>
@@ -213,14 +182,14 @@
           <div class="uk-margin">
               <label class="uk-form-label font2" for="form-stacked-text">Username</label>
               <div class="uk-form-controls">
-                  <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" name="username" autocomplete="off">
+                  <input class="uk-input" id="form-auth-username" type="text" placeholder="Inserire testo" name="username" autocomplete="off">
               </div>
           </div>
 
           <div class="uk-margin">
               <label class="uk-form-label font2" for="form-stacked-text">Password</label>
               <div class="uk-form-controls">
-                  <input class="uk-input" id="form-stacked-text" type="password" placeholder="Inserire testo" name="password" autocomplete="off">
+                  <input class="uk-input" id="form-auth-password" type="password" placeholder="Inserire testo" name="password" autocomplete="off">
               </div>
           </div>
 
@@ -262,14 +231,14 @@
             <div class="uk-margin">
                 <label class="uk-form-label font2" for="form-stacked-text">Username</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input" id="form-stacked-text" type="text" placeholder="Inserire testo" autocomplete="off" name="username">
+                    <input class="uk-input" id="form-reg-username" type="text" placeholder="Inserire testo" autocomplete="off" name="username">
                 </div>
             </div>
 
             <div class="uk-margin">
                 <label class="uk-form-label font2" for="form-stacked-text">Password</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input" id="form-stacked-text" type="password" placeholder="Inserire testo" autocomplete="off" name="password">
+                    <input class="uk-input" id="form-reg-password" type="password" placeholder="Inserire testo" autocomplete="off" name="password">
                 </div>
             </div>
 
