@@ -76,7 +76,8 @@
       <!--<form action="javascript:void(0)">
         <input class="uk-input uk-form-width-large" type="text" placeholder="Search">
       </form>-->
-      <form class="uk-search uk-search-default" style="background-color: white; width: 500px;">
+
+      <form class="uk-search uk-search-default" style="background-color: white; width: 450px;">
         <span uk-search-icon></span>
         <input class="uk-search-input" id="search" type="search" placeholder="Search..." style="border-color: silver;" autocomplete="off">
       </form>
@@ -92,9 +93,9 @@
              se l'utente è autenticato può procedere diretto alla creazione di un nuovo thread.
              Altrimenti dovrà autenticarsi oppure creare un nuovo profilo -->
         <?php if(isset($_SESSION['logged']) && $_SESSION['logged'] == true): ?>
-          <button class="uk-button uk-button-default" uk-toggle="target: #modal-ask" id="ask-a-question-link">NUOVA DOMANDA</button>
+          <button class="uk-button uk-button-default" uk-toggle="target: #modal-ask" id="ask-a-question-link">DOMANDA</button>
         <?php else: ?>
-          <button class="uk-button uk-button-default" uk-toggle="target: #modal-auth" id="ask-a-question-link">NUOVA DOMANDA</button>
+          <button class="uk-button uk-button-default" uk-toggle="target: #modal-auth" id="ask-a-question-link">DOMANDA</button>
         <?php endif; ?>
 
 
@@ -173,7 +174,7 @@
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="uk-modal-header">
-            <h2 class="uk-modal-title font">Autenticazione richiesta</h2>
+            <h2 class="uk-modal-title font" id="h2-auth-form">Autenticazione richiesta</h2>
         </div>
         <div class="uk-modal-body">
 
@@ -201,7 +202,7 @@
 
         <!-- end auth form -->
 
-          <div class="uk-margin">
+          <div class="uk-margin" id="div-auth">
             <button class="uk-button uk-button-primary" type="submit">LOGIN</button>
           </div>
 

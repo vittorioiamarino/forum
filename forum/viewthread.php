@@ -76,8 +76,10 @@
     </div>
     <div class='uk-card-footer'>
 			
-			<a href="index.php" style="color: orange;" id="thread_like_button" class="uk-icon-button" uk-icon="heart"></a>
-			
+			<?php if($_SESSION["logged"] == true): ?>
+				<a href="index.php" style="color: orange;" id="thread_like_button" class="uk-icon-button" uk-icon="heart"></a>
+			<?php endif; ?>
+
 			<div class="uk-align-right">	
 				<?php echo count($posts); ?> <span style="color: orange;" uk-icon="comments"></span>
 				&nbsp;&nbsp; 

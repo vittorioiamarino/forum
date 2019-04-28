@@ -26,6 +26,9 @@
     .font2 {
       font-family: "Gilroy";
     }
+    .auth-error {
+      color: #f0506e;
+    }
     /*#a { background: #FAFAFA; }*/
   </style>
 
@@ -38,7 +41,7 @@
   <?php include("navbar.php"); ?>
 
   <!-- start page container -->
-  <div class="uk-container">
+  <div class="uk-container uk-margin-small-top">
 
     <?php
 
@@ -84,18 +87,16 @@
     <!-- Start grid container -->
     <div class="uk-child-width-expand@s" uk-grid>
       
-      <div class="uk-width-1-6">
-        <!--<div class="uk-card uk-card-default uk-card-body">
-        <ul class="uk-list uk-link-text">
-          <li><span class="uk-margin-small-right" uk-icon="home"></span><a href="#">Home</a></li>
-          <li><span class="uk-margin-small-right" uk-icon="star"></span><a href="#">Popular</a></li>
-          <li><span class="uk-margin-small-right" uk-icon="user"></span><a href="profile.php">Profilo</a></li>
-        </ul>
-        </div>-->
-        <ul class="uk-list uk-list-divider uk-link-text font2">
-          <li><span class="uk-margin-small-right" uk-icon="home"></span><a href="index.php">Home</a></li>
+      <div class="uk-width-1-6 uk-text-left">
+        <ul style="background-color: white; padding: 20px; border-radius: 3px; box-sizing: border-box;" class="uk-list uk-list-divider uk-link-text font2">
+          <!--<li><span style="color: orange;" class="uk-margin-small-right" uk-icon="icon: home; ratio: 2"></span><a href="index.php">Home</a></li>
           <li><span class="uk-margin-small-right" uk-icon="star"></span><a href="popular.php">Popular</a></li>
-          <li><span class="uk-margin-small-right" uk-icon="user"></span><a href="profile.php">Profilo</a></li>
+          <li><span class="uk-margin-small-right" uk-icon="user"></span><a href="profile.php">Profilo</a></li>-->
+        
+          <li><span style="color: orange;" class="uk-margin-small-right" uk-icon="icon: home; ratio: 1.5"></span><a class="font" style="color: orange;" href="index.php">Home</a></li>
+          <li><span class="uk-margin-small-right" uk-icon="icon: star; ratio: 1.5"></span><a href="popular.php">Popular</a></li>
+          <li><span class="uk-margin-small-right" uk-icon="icon: user; ratio: 1.5"></span><a href="profile.php">Profilo</a></li>
+
         </ul>
       </div>
 

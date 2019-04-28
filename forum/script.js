@@ -158,14 +158,46 @@ $(document).ready(() => {
 			let username = document.getElementById("form-auth-username");
 			let password = document.getElementById("form-auth-password");
 
+			let validation_error = false;
+			let this_form = this;
+
+
 			if(username.value == '' || password.value == '') {
-				console.log("VALIDAZIONE FORM");
 				event.preventDefault();
+				validation_error = true;
 			}
-			console.log("a");
-			if(username.value == '') { $("#form-auth-username").addClass("uk-form-danger"); }
-			if(password.value == '') { $("#form-auth-password").addClass("uk-form-danger"); }
+
+			if(username.value == '') { $("#form-auth-username").addClass("uk-form-danger");}
+			if(password.value == '') { $("#form-auth-password").addClass("uk-form-danger");}
+
+			if(validation_error) {
+				console.log("ESCO PER ERRORE VALIDAZIONE");
+				return;
+			}
+
+			event.preventDefault();
+
+			$.ajax({
+		    type: "POST",
+		    url: "loginajax.php",
+		    data: "username="+username.value+"&password="+password.value+"&prova=prova"
+		  })
+		  .done((e) => {
+		  	let risultato = JSON.parse(e);
+		  	//console.log(risultato);
+
+		  	if(risultato["error"]) {
+		  		document.getElementById("h2-auth-form").textContent = "Errore autenticazione";
+		  		$("#h2-auth-form").addClass("auth-error");
+		  		console.log("DOVREI USCIRE");
+		  	}
+		  	else if(risultato["success"]) {this_form.submit();}
+		  })
+		  .fail((e) => console.log("NO"));
+			
 		});
+
+
 
 		// gestione validazione form login
 		$("#form-auth-username").focus(function(){ $(this).removeClass("uk-form-danger"); });
